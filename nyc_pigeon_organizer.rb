@@ -3,30 +3,31 @@ def nyc_pigeon_organizer(data)
 
   new_hash = {}
  
-  data.collect do |color_key, color_value|
+  data.collect do |key, hash_value|
     
-    color_value.collect do |name_key, name_value|
+    hash_value.collect do |inner_key, name_array|
 
-      name_value.collect do |element|
+      name_array.collect do |pigeon_name|
         
-        if !new_hash[element]
-          new_hash[element] = {}
+        if !new_hash[pigeon_name]
+          new_hash[pigeon_name] = {}
         end
 
-        if !new_hash[element][color_key]
-          new_hash[element][color_key] = []
-          
+        if !new_hash[pigeon_name][key]
+          new_hash[pigeon_name][key] = []
         end
-        new_hash[element][color_key] << name_key.to_s
+        
+        new_hash[pigeon_name][key] << inner_key.to_s
 
     # "Theo" => {:color => []}
     # << name_key.to_s
     # binding.pry
     
       end
-
+  
     end
-    
+  
   end
+  
   new_hash
 end
